@@ -8,12 +8,14 @@ Each topic includes the investigation context, key learning outcomes.
 ## Employee of the Year
 
 **Activity:**  
-Investigated a suspected insider threat scenario involving abnormal employee behavior. Reviewed authentication logs, access patterns, and privilege usage to determine potential misuse or compromise.
+Analyzed a disk image to investigate deleted and hidden artifacts related to the incident. Used multiple forensic utilities to extract files, recover metadata, and identify traces of user activity.
 
 **Learning:**  
-- Insider threat indicators  
-- Log correlation techniques  
-- Privilege misuse detection  
+- Disk image analysis fundamentals  
+- File carving using `foremost`  
+- PDF artifact analysis with `pdf-parser`  
+- Recovering deleted file names using `strings`  
+- Understanding filesystem layout and artifacts  
 
 **Proof:**  
 - [Employee_of_the_year](Employee_of_the_year.png)
@@ -23,12 +25,13 @@ Investigated a suspected insider threat scenario involving abnormal employee beh
 ## Follina
 
 **Activity:**  
-Analyzed the Follina (MSDT) vulnerability by investigating a malicious Office document used for initial access. Identified exploitation behavior and execution flow.
+Analyzed a malicious Microsoft Word document (`sample.doc`) associated with the Follina (CVE-2022-30190) vulnerability. Since the original malware infrastructure was no longer active, dynamic analysis platforms such as Any.Run were not viable. To complete the investigation, relied on open-source intelligence and publicly available threat research.
 
 **Learning:**  
-- Office-based attack vectors  
-- MSDT exploitation mechanics  
-- Document-based malware detection  
+- Understanding the Follina (CVE-2022-30190) vulnerability  
+- Analyzing malicious Office documents  
+- Using OSINT and threat intelligence reports for malware analysis  
+- Interpreting real-world incident response write-ups  
 
 **Proof:**  
 - [Follina](Follina.png)
@@ -58,7 +61,6 @@ Investigated metadata artifacts within files and logs to uncover attacker activi
 **Learning:**  
 - Metadata analysis techniques  
 - Artifact based investigation  
-- Attribution clues  
 
 **Proof:**  
 - [Meta](Meta.png)
