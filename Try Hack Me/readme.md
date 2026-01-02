@@ -3,13 +3,17 @@
 This directory contains my write-ups,notes,reports for various rooms completed on TryHackMe. 
 Each room has its own dedicated folder with a detailed `README.md` 
 documenting the process, tools used, and key learnings.
-   
+<div align="center">
+
+
    | Room Name | Difficulty | Date Completed |
    | :-------- | :--------- | :------------- |
    | [Mr. Robot](/mr.robot/README.md) | Medium | 2023-10-26 |
    | [Debug](/debug/README.md) | Medium | 2023-11-01 |
-  
-   ---
+
+
+</div>
+
   
 ## How to Use This Repository
   
