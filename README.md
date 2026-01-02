@@ -9,7 +9,7 @@
 
 ## [Completed rooms](https://github.com/rajeshmantri2711/Try-Hack-Me/tree/main/Rooms) 
 
-- [Mr. Robot](Try Hack Me/Mr.robot)  
+- [Mr. Robot](Try%20Hack%20Me/Mr.robot)
 - [Debug](https://github.com/rajeshmantri2711/Try-Hack-Me/tree/main/Rooms/debug)
 
 </div>
