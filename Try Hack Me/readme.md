@@ -6,8 +6,8 @@ documenting the process, tools used, and key learnings.
    
    | Room Name | Difficulty | Date Completed |
    | :-------- | :--------- | :------------- |
-   | [Mr. Robot](mr.robot/README.md) | Medium | 2023-10-26 |
-   | [Debug](debug/README.md) | Medium | 2023-11-01 |
+   | [Mr. Robot](/mr.robot/README.md) | Medium | 2023-10-26 |
+   | [Debug](/debug/README.md) | Medium | 2023-11-01 |
   
    ---
   
