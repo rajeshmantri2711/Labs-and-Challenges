@@ -1,0 +1,29 @@
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-10-27 16:29 IST
+Nmap scan report for 10.10.16.134
+Host is up (0.17s latency).
+Not shown: 997 filtered tcp ports (no-response)
+PORT    STATE SERVICE  VERSION
+22/tcp  open  ssh      OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 aa:95:6a:27:a4:2e:7b:2f:a0:6a:c9:0b:d9:3b:be:ac (RSA)
+|   256 70:f3:34:15:90:ab:a0:df:c4:c4:c5:57:e7:43:8a:fa (ECDSA)
+|_  256 27:d9:1c:de:7c:ce:2f:21:5c:4e:02:05:40:20:2b:71 (ED25519)
+80/tcp  open  http     Apache httpd
+|_http-server-header: Apache
+|_http-title: Site doesn't have a title (text/html).
+443/tcp open  ssl/http Apache httpd
+| ssl-cert: Subject: commonName=www.example.com
+| Not valid before: 2015-09-16T10:45:03
+|_Not valid after:  2025-09-13T10:45:03
+|_http-server-header: Apache
+|_http-title: Site doesn't have a title (text/html).
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose
+Running (JUST GUESSING): Linux 4.X|2.6.X|3.X|5.X (97%)
+OS CPE: cpe:/o:linux:linux_kernel:4.15 cpe:/o:linux:linux_kernel:2.6 cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:5
+Aggressive OS guesses: Linux 4.15 (97%), Linux 2.6.32 - 3.13 (91%), Linux 3.10 - 4.11 (91%), Linux 3.2 - 4.14 (91%), Linux 4.15 - 5.19 (91%), Linux 5.0 - 5.14 (91%), Linux 2.6.32 - 3.10 (91%), Linux 5.4 (90%)
+No exact OS matches for host (test conditions non-ideal).
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 51.51 seconds

