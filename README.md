@@ -7,9 +7,9 @@
 
 ## [Profile](https://tryhackme.com/p/iamsinner)
 
-## [Completed rooms](https://github.com/rajeshmantri2711/Try-Hack-Me/tree/main/Rooms) 
+## [Completed rooms](Try%20Hack%20Me) 
 
 - [Mr. Robot](Try%20Hack%20Me/Mr.robot)
-- [Debug](https://github.com/rajeshmantri2711/Try-Hack-Me/tree/main/Rooms/debug)
+- [Debug](Try%20Hack%20Me/debug)
 
 </div>
