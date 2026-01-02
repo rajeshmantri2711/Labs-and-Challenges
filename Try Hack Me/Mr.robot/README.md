@@ -2,11 +2,11 @@
 ### Room link
 '''https://tryhackme.com/room/mrrobot'''
 
-### [Gobuster findings](https://github.com/rajeshmantri2711/Try-Hack-Me/blob/main/Rooms/Mr.robot/gobuster.txt)
+### [Gobuster findings](gobuster.txt)
 
-### [Nmap findings](https://github.com/rajeshmantri2711/Try-Hack-Me/blob/main/Rooms/Mr.robot/nmap.txt)
+### [Nmap findings](nmap.txt)
 
-### [Report](https://github.com/rajeshmantri2711/Try-Hack-Me/blob/main/Rooms/Mr.robot/Mr.Robot_THM.pdf)
+### [Report](Mr.Robot_THM.pdf)
 
 ### Badge
 
